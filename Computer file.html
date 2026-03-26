@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flight Booking</title>
+</head>
+<body>
+
+<h1>Flight List</h1>
+<div id="flights"></div>
+
+<h2>Add Flight</h2>
+<input id="dep" placeholder="Departure Airport"><br>
+<input id="arr" placeholder="Arrival Airport"><br>
+<input id="time" placeholder="Departure Time"><br>
+<input id="pilot" placeholder="Pilot"><br>
+<input id="passengers" placeholder="Passengers"><br>
+<button onclick="addFlight()">Add Flight</button>
+
+<script>
+const API_URL = "PASTE_YOUR_API_URL_HERE";
+
+async function loadFlights() {
+  const res = await fetch(API_URL);
+  const flights = await res.json();
+
+  const container = document.getElementById("flights");
+  container.innerHTML = "";
+
+  flights.forEach(f => {
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <hr>
+      <b>${f.DepartureAirport} → ${f.ArrivalAirport}</b><br>
+      Time: ${f.DepartureTime}<br>
+      Pilot: ${f.Pilot}<br>
+      Passengers: ${f.Passengers}
+    `;
+    container.appendChild(div);
+  });
+}
+
+async function addFlight() {
+  const flight = {
+    FlightID: Date.now(),
+    DepartureAirport: document.getElementById("dep").value,
+    ArrivalAirport: document.getElementById("arr").value,
+    DepartureTime: document.getElementById("time").value,
+    Pilot: document.getElementById("pilot").value,
+    Passengers: document.getElementById("passengers").value
+  };
+
+  await fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify(flight)
+  });
+
+  loadFlights();
+}
+
+loadFlights();
+</script>
+
+</body>
+</html>
