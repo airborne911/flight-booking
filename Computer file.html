@@ -17,7 +17,7 @@
 <button onclick="addFlight()">Add Flight</button>
 
 <script>
-const API_URL = "PASTE_YOUR_API_URL_HERE";
+const API_URL = "https://script.googleusercontent.com/a/macros/getairborne.com.au/echo?user_content_key=AWDtjMUNMz-DmEJmatYVPn-lrlH4V5L_nBECN5blh6himNrXUjblVWTJKMCKjNvMNcGuQ2jb8MjU7Loo13zXZ7HYElCe5l3OtEv1G8mbZB-7Q3Mmm4A4imdQ-oKZ0dVHKWVeaePp7mLPK27bQl4Ci4GO46K_Lx4Ud-BQTTeXFn0C7rfr5Hg2--L09buSxfAB2FeJW-T0AKxRyuo4sZ4fe0LciONs-zguaGKAYVYhuY-Gf3_NVSU1SpaGj5IXudEO3RCcFXS-8xCZ1X8VpDPuFr5eXW-3iIiG_ujeH64eNhrdvX9RNxV8O7tAdnVCNlDUPQ&lib=MEZJ3cTviUW156Szje3Hz1dMU3_7NEnu4";
 
 async function loadFlights() {
   const res = await fetch(API_URL);
